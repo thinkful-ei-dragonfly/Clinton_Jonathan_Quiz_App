@@ -35,6 +35,10 @@ class Quiz {
   nextQuestion(){
     this.asked.push(this.unasked.shift());
   }
+
+  // submitAnswer(answer) {
+  //   question.userAnswer = answer;
+  // }
  
 }
 
