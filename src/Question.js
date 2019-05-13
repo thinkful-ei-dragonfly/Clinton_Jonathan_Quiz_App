@@ -1,5 +1,5 @@
-class Question {
 
+class Question {
 }
 
 export default Question;

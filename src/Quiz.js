@@ -1,4 +1,5 @@
 import Question from './Question';
+import * as TriviaApi from './TriviaApi';
 
 class Quiz {
 
@@ -10,6 +11,8 @@ class Quiz {
     // Array of Question instances
     this.asked = [];
     this.active = false;
+    this.score = 0;
+    this.scoreHistory = [];
 
     // TASK: Add more props here per the exercise
 
@@ -19,6 +22,14 @@ class Quiz {
   startGame() {
     this.active = true;
   }
+  
+  start(){
+    console.log('starting');
+    console.log(TriviaApi);
+    TriviaApi.getQuestions()
+    .then(res => this.unasked.push(res));
+  }
+ 
 }
 
 export default Quiz;
