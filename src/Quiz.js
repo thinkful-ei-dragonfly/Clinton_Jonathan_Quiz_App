@@ -1,5 +1,5 @@
 import Question from './Question';
-import * as TriviaApi from './TriviaApi';
+import TriviaApi from './TriviaApi';
 
 class Quiz {
 
@@ -24,10 +24,16 @@ class Quiz {
   }
   
   start(){
-    console.log('starting');
-    console.log(TriviaApi);
-    TriviaApi.getQuestions()
-    .then(res => this.unasked.push(res));
+    const trivia = new TriviaApi();
+    trivia.getQuestions()
+    .then(res => res.results)
+    .then(res => res.forEach(question =>{
+      this.unasked.push(question);
+    }));
+  }
+
+  nextQuestion(){
+    this.asked.push(this.unasked.shift());
   }
  
 }

@@ -1,10 +1,12 @@
 'use strict';
-const BASE_URL = 'https://opentdb.com/api.php?amount=5';
 
 class TriviaApi {
   
+  static BASE_URL = 'https://opentdb.com/api.php?amount=5';
+
   getQuestions(){
-    return fetch(BASE_URL)
+    const url = new URL(TriviaApi.BASE_URL);
+    return fetch(url)
     .then(res => res.json());
   }
 }
