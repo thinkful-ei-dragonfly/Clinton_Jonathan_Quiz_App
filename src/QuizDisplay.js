@@ -6,6 +6,7 @@ class QuizDisplay extends Renderer {
   getEvents() {
     return {
       'click .start-quiz': 'handleStart',
+      'click .submit-answer': 'handleSubmit',
     };
   }
 
@@ -29,16 +30,26 @@ class QuizDisplay extends Renderer {
     return `
       <div>
         <p>
-          Question string
           ${this.model.asked[0].text}
         </p>
-        <p>
-          Radial answer buttons
+        <p class="answer-list">
+          ${this.generateAnswer()}
         </p>
       </div>
+      <button type="button" class="submit-answer">Submit</button>
     `
   }
 
+  generateAnswer(){
+    console.log(this.model.asked);
+    let answerHtml = this.model.asked[0].answers.map(answer => {
+      return `
+      <input type="radio" name="answer" value="${answer}"> ${answer}
+      `
+    });
+    return answerHtml.join('');
+    // ${'.answer-list'}.append(answerHtml.join(''));
+  }
 
   template() {
     let html = '';
@@ -55,12 +66,12 @@ class QuizDisplay extends Renderer {
   }
 
   handleStart() {
-    $('.buttons').on('click', '.start-quiz', res => {
       this.model.startGame();
       console.log('Quiz Started');
-      this.model.nextQuestion();
-      console.log('first question');
-    });
+  }
+
+  handleSubmit(){
+    this.model.submitAnswer();
   }
 }
 
