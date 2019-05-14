@@ -55,7 +55,9 @@ class QuizDisplay extends Renderer {
   }
 
   _generateCorrect() {
-
+    return `<div>
+    <p>Hello World</p>
+    </div>`;
   }
 
   _generateIncorrect() {
@@ -76,7 +78,7 @@ class QuizDisplay extends Renderer {
     }
     else {
       if (this.model.asked[0].answerStatus() === 1) {
-        html = this._generateCorrect;
+        html = this._generateCorrect();
       }
       else if (this.model.asked[0].answerStatus() === 0) {
         html = this._generateIncorrect();
@@ -91,7 +93,7 @@ class QuizDisplay extends Renderer {
     // else{
     //   html = this._generateError();
     // }
-
+    console.log(html);
     return html;
   }
 
@@ -109,6 +111,7 @@ class QuizDisplay extends Renderer {
     else {
       console.log(answer);
       this.model.submitAnswer(answer);
+      this.template();
     }
   }
 }
