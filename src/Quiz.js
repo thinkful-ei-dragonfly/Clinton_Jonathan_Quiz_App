@@ -21,16 +21,14 @@ class Quiz {
   // Example method:
   startGame() {
     this.active = true;
-  }
-  
-  start(){
     const trivia = new TriviaApi();
     trivia.getQuestions()
-    .then(res => res.results)
     .then(res => res.forEach(question =>{
       this.unasked.push(question);
     }));
   }
+  
+
 
   nextQuestion(){
     this.asked.push(this.unasked.shift());
