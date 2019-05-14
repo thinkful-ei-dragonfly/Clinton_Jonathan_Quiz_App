@@ -1,12 +1,13 @@
 'use strict';
 import Renderer from './lib/Renderer';
 import $ from 'jquery';
+import Question from './Question';
 
 class QuizDisplay extends Renderer {
   getEvents() {
     return {
       'click .start-quiz': 'handleStart',
-      'click .submit-answer': 'handleSubmit',
+      'submit .submit-answer': 'handleSubmit',
     };
   }
 
@@ -26,52 +27,88 @@ class QuizDisplay extends Renderer {
     `;
   }
 
-  _generateQuiz(){
+  _generateQuiz() {
     return `
       <div>
         <p>
           ${this.model.asked[0].text}
         </p>
         <p class="answer-list">
+        <form class="submit-answer">
           ${this.generateAnswer()}
+          <input type="submit" value="Submit"/>
+        </form>
         </p>
       </div>
-      <button type="button" class="submit-answer">Submit</button>
     `
   }
 
-  generateAnswer(){
+  generateAnswer() {
     console.log(this.model.asked);
     let answerHtml = this.model.asked[0].answers.map(answer => {
       return `
-      <input type="radio" name="answer" value="${answer}"> ${answer}
+      <input class ="answer" type="radio" name="answer" value="${answer}"> ${answer}
       `
     });
     return answerHtml.join('');
     // ${'.answer-list'}.append(answerHtml.join(''));
   }
 
+  _generateCorrect() {
+
+  }
+
+  _generateIncorrect() {
+
+  }
+
+  _generateError() {
+
+  }
+
+
   template() {
     let html = '';
-    
+
     if (this.model.asked.length === 0) {
       // Quiz has not started
       html = this._generateIntro();
     }
-    else{
-      html = this._generateQuiz()
+    else {
+      if (this.model.asked.answerStatus === 1) {
+        html = this._generateCorrect;
+      }
+      else if (this.model.asked.answerStatus === 0) {
+        html = this._generateIncorrect();
+      }
+      else{
+      html = this._generateQuiz();
+      }
     }
-    
+
+
+    // else{
+    //   html = this._generateError();
+    // }
+
     return html;
   }
 
   handleStart() {
-      this.model.startGame();
-      console.log('Quiz Started');
+    this.model.startGame();
+    console.log('Quiz Started');
   }
 
-  handleSubmit(){
-    this.model.submitAnswer();
+  handleSubmit(e) {
+    e.preventDefault();
+    const answer = e.target.answer.value;
+    if (answer === "") {
+      throw ("Must select an answer");
+    }
+    else {
+      console.log(answer);
+      this.model.submitAnswer(answer);
+    }
   }
 }
 
