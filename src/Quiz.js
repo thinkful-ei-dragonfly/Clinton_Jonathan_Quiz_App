@@ -3,7 +3,7 @@ import TriviaApi from './TriviaApi';
 
 class Quiz {
 
-  static DEFAULT_QUIZ_LENGTH = 2;
+  static DEFAULT_QUIZ_LENGTH = 5;
 
   constructor() {
     // Array of Question instances
@@ -40,6 +40,10 @@ class Quiz {
       });
   };
 
+  submitAnswer(a){
+    this.asked[0].submitAnswer(a);
+  }
+
 
   nextQuestion(){
     this.asked.unshift(this.unasked.shift());
@@ -57,7 +61,7 @@ class Quiz {
   }
 
   updateScore(){
-    if (this.asked[0].userAnswer === this.asked[0].correct_answer) {
+    if (this.asked[0].userAnswer === this.asked[0].correctAnswer) {
       this.score ++;
   } 
 }
