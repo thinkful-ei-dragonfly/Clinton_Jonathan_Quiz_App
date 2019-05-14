@@ -8,6 +8,7 @@ class QuizDisplay extends Renderer {
     return {
       'click .start-quiz': 'handleStart',
       'submit .submit-answer': 'handleSubmit',
+      // 'click .continue': 'handleContinue', //need to create a handleContinue
     };
   }
 
@@ -55,9 +56,11 @@ class QuizDisplay extends Renderer {
   }
 
   _generateCorrect() {
-    return `<div>
-    <p>Hello World</p>
-    </div>`;
+    return `
+      <div>
+       <p>Correct Answer</p>
+      </div>
+    `;
   }
 
   _generateIncorrect() {
@@ -65,7 +68,11 @@ class QuizDisplay extends Renderer {
   }
 
   _generateError() {
-
+    return `
+      <div>
+        <p>Must Select Answer</p>
+      </div>
+    `;
   }
 
 
@@ -86,14 +93,14 @@ class QuizDisplay extends Renderer {
       else{
       html = this._generateQuiz();
       }
-      console.log(this.model.asked[0].answerStatus());
+      // console.log(this.model.asked[0].answerStatus());
     }
 
 
     // else{
     //   html = this._generateError();
     // }
-    console.log(html);
+    // console.log(html);
     return html;
   }
 

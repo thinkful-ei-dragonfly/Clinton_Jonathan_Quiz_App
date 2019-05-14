@@ -1,10 +1,12 @@
+import Model from './lib/Model' //imported model
 
-class Question {
-    constructor(){
-        this.text = '',
-        this.answers = [],
-        this.correctAnswer = '',
-        this.userAnswer = '';
+class Question extends Model { //extended from model
+    constructor(questionData){
+        super();
+        this.text = questionData.question;
+        this.answers = [questionData.correct_answer, ...questionData.incorrect_answers];
+        this.correctAnswer = questionData.correct_answer;
+        this.userAnswer = null;  //added super and refactored data inputs
     }
 
     submitAnswer(a){
