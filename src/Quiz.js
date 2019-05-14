@@ -25,6 +25,7 @@ class Quiz {
     trivia.getQuestions()
     .then(res => res.forEach(question =>{
       this.unasked.push(question);
+      this.asked.push(this.unasked.shift());
     }));
   }
   
