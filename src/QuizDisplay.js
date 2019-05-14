@@ -26,7 +26,17 @@ class QuizDisplay extends Renderer {
   }
 
   _generateQuiz(){
-    
+    return `
+      <div>
+        <p>
+          Question string
+          ${this.model.asked[0].text}
+        </p>
+        <p>
+          Radial answer buttons
+        </p>
+      </div>
+    `
   }
 
 
@@ -47,7 +57,9 @@ class QuizDisplay extends Renderer {
   handleStart() {
     $('.buttons').on('click', '.start-quiz', res => {
       this.model.startGame();
+      console.log('Quiz Started');
       this.model.nextQuestion();
+      console.log('first question');
     });
   }
 }
