@@ -7,8 +7,8 @@ class Question {
         this.userAnswer = '';
     }
 
-    submitAnswer(){
-        this.userAnswer = answer;
+    submitAnswer(a){
+        this.userAnswer = a;
     }
 
     answerStatus(){
