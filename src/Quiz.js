@@ -1,11 +1,14 @@
 import Question from './Question';
 import TriviaApi from './TriviaApi';
+import Model from './lib/Model';
 
-class Quiz {
+class Quiz extends Model {
 
   static DEFAULT_QUIZ_LENGTH = 5;
 
   constructor() {
+    //This line calls the superclass' constructor first
+    super();
     // Array of Question instances
     this.unasked = [];
     // Array of Question instances
