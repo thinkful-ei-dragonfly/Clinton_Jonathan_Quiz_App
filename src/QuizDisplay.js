@@ -75,15 +75,16 @@ class QuizDisplay extends Renderer {
       html = this._generateIntro();
     }
     else {
-      if (this.model.asked.answerStatus === 1) {
+      if (this.model.asked[0].answerStatus() === 1) {
         html = this._generateCorrect;
       }
-      else if (this.model.asked.answerStatus === 0) {
+      else if (this.model.asked[0].answerStatus() === 0) {
         html = this._generateIncorrect();
       }
       else{
       html = this._generateQuiz();
       }
+      console.log(this.model.asked[0].answerStatus());
     }
 
 
