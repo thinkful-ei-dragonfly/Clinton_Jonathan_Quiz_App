@@ -18,6 +18,7 @@ class Quiz extends Model {
     this.scoreHistory = [];
     this.highestScore = 0;
     this.message = null;
+    this.newHighScoreMessage = null;
 
     // TASK: Add more props here per the exercise
 
@@ -96,11 +97,22 @@ class Quiz extends Model {
 
   updateMessage(){
     if(this.score > 3){
-      this.message = 'Good job!'
+      this.message = 'Good job!';
     }
     else{
-      this.message = 'Nice try!'
+      this.message = 'Nice try!';
     }
+    this.update();
+  }
+
+  newHighScore(){
+    if(this.score > this.highestScore){
+      this.newHighScoreMessage = `That's a new high score!`;
+    }
+    else{
+      this.newHighScoreMessage = '';
+    }
+    this.update();
   }
 }
 

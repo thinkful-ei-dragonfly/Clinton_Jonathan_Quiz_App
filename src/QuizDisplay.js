@@ -125,6 +125,8 @@ class QuizDisplay extends Renderer {
         <p>
           Your final score was ${this.model.score} out of 5.
         </p>
+        <p>${this.model.newHighScoreMessage}
+        </p>
       </div>
       <div class="buttons">
         <button class="start-quiz">Play Again</button>
@@ -182,6 +184,7 @@ class QuizDisplay extends Renderer {
     if (this.model.unasked.length === 0){
       // this.model.updateScore();
       this.model.updateScoreHistory();
+      this.model.newHighScore();
       this.model.updateHighestScore(this.model.scoreHistory);
       this.model.updateMessage();
       this.model.endgame();
