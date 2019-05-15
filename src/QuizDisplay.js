@@ -127,7 +127,7 @@ class QuizDisplay extends Renderer {
         </p>
       </div>
       <div class="buttons">
-        <button class="play-again">Play Again</button>
+        <button class="start-quiz">Play Again</button>
       </div>
     `;
   }
@@ -182,6 +182,7 @@ class QuizDisplay extends Renderer {
     if (this.model.unasked.length === 0){
       // this.model.updateScore();
       this.model.updateScoreHistory();
+      this.model.updateHighestScore(this.model.scoreHistory);
       this.model.endgame();
       console.log('endgame ran');
     }

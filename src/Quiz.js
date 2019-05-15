@@ -16,6 +16,7 @@ class Quiz extends Model {
     this.active = false;
     this.score = 0;
     this.scoreHistory = [];
+    this.highestScore = 0;
 
     // TASK: Add more props here per the exercise
 
@@ -25,6 +26,7 @@ class Quiz extends Model {
   startGame() {
     this.asked = [];
     this.active = true;
+    this.score = 0;
     const trivia = new TriviaApi();
     trivia.getQuestions()
     .then(res => {
@@ -64,6 +66,18 @@ class Quiz extends Model {
       this.scoreHistory.push(this.score);
       this.update();
     }
+  }
+
+  updateHighestScore(arr){
+    let highest;
+    if(arr.length === 0){
+      highest = 0;
+    }
+    else{
+      highest = Math.max(...arr)
+    }
+    this.highestScore = highest;
+    this.update();
   }
 
   endgame(){

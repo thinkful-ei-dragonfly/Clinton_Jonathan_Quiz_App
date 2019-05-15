@@ -8,7 +8,13 @@ class QuizStatus extends Renderer {
 
     return `
       <div>
+      <p>Score: ${this.model.score}</p>
       </div>
+      <div>
+      <p>High Score: ${this.model.highestScore}</p>
+      </div>
+      <div>
+      <p>Progress: ${this.model.asked.length} of 5</p>
     `;
   }
 
