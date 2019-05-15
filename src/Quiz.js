@@ -7,11 +7,8 @@ class Quiz extends Model {
   static DEFAULT_QUIZ_LENGTH = 5;
 
   constructor() {
-    //This line calls the superclass' constructor first
     super();
-    // Array of Question instances
     this.unasked = [];
-    // Array of Question instances
     this.asked = [];
     this.active = false;
     this.score = 0;
@@ -19,12 +16,8 @@ class Quiz extends Model {
     this.highestScore = 0;
     this.message = null;
     this.newHighScoreMessage = null;
-
-    // TASK: Add more props here per the exercise
-
   }
 
-  // Example method:
   startGame() {
     this.asked = [];
     this.active = true;
@@ -33,12 +26,7 @@ class Quiz extends Model {
     trivia.getQuestions()
     .then(res => {
         res.results.forEach(item => {
-          let question = new Question(item); //refactored results
-          // question.text = item.question;
-          // question.answers = [item.correct_answer, ...item.incorrect_answers];
-          // question.correctAnswer = item.correct_answer;
-          // question.userAnswer = '';
-
+          let question = new Question(item); 
           this.unasked.push(question);
         });
         this.nextQuestion();
@@ -84,7 +72,6 @@ class Quiz extends Model {
 
   endgame(){
     this.active = false;
-    // this.score = 0;
     this.update();
   }
 

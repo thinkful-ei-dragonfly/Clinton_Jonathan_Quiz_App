@@ -8,7 +8,7 @@ class QuizDisplay extends Renderer {
     return {
       'click .start-quiz': 'handleStart',
       'submit .submit-answer': 'handleSubmit',
-      'click .continue': 'handleContinue', //need to create a handleContinue
+      'click .continue': 'handleContinue',
     };
   }
 
@@ -45,14 +45,12 @@ class QuizDisplay extends Renderer {
   }
 
   generateAnswer() {
-    console.log(this.model.asked);
     let answerHtml = this.model.asked[0].answers.map(answer => {
       return `
       <input class ="answer" type="radio" name="answer" value="${answer}"> ${answer}
       `
     });
     return answerHtml.join('');
-    // ${'.answer-list'}.append(answerHtml.join(''));
   }
 
   _generateCorrect() {
@@ -141,7 +139,6 @@ class QuizDisplay extends Renderer {
       html = this._generateEndgame();
     }
     else if (this.model.asked.length === 0) {
-      // Quiz has not started
       html = this._generateIntro();
     }
     else {
@@ -154,16 +151,12 @@ class QuizDisplay extends Renderer {
       else{
       html = this._generateQuiz();
       }
-      // console.log(this.model.asked[0].answerStatus());
     }
-
-    console.log(html);
     return html;
   }
 
   handleStart() {
     this.model.startGame();
-    console.log('Quiz Started');
   }
 
   handleSubmit(e) {
@@ -173,7 +166,6 @@ class QuizDisplay extends Renderer {
       throw ("Must select an answer");
     }
     else {
-      console.log(answer);
       this.model.submitAnswer(answer);
       this.model.updateScore();
     }
@@ -182,13 +174,11 @@ class QuizDisplay extends Renderer {
   handleContinue(e){
     e.preventDefault();
     if (this.model.unasked.length === 0){
-      // this.model.updateScore();
       this.model.updateScoreHistory();
       this.model.newHighScore();
       this.model.updateHighestScore(this.model.scoreHistory);
       this.model.updateMessage();
       this.model.endgame();
-      console.log('endgame ran');
     }
     else {
       this.model.nextQuestion();
