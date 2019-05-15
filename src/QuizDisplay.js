@@ -8,7 +8,7 @@ class QuizDisplay extends Renderer {
     return {
       'click .start-quiz': 'handleStart',
       'submit .submit-answer': 'handleSubmit',
-      // 'click .continue': 'handleContinue', //need to create a handleContinue
+      'click .continue': 'handleContinue', //need to create a handleContinue
     };
   }
 
@@ -57,22 +57,63 @@ class QuizDisplay extends Renderer {
 
   _generateCorrect() {
     return `
+    <div>
+      <p>
+        ${this.model.asked[0].text}
+      </p>
+      <p class="correct-answer">
+      You Got it!
+      </p>
       <div>
-       <p>Correct Answer</p>
+      <p>The correct answer was</p>
       </div>
-    `;
+      <p>${this.model.asked[0].correctAnswer}</p>
+      <input type="submit" class="continue" value="Continue"/>
+    </div>
+  `;
   }
 
   _generateIncorrect() {
-
+    return `
+    <div>
+      <p>
+        ${this.model.asked[0].text}
+      </p>
+      <p class="correct-answer">
+      Sorry, that's incorrect
+      </p>
+      <div>
+      <p>You answered:</p>
+      </div>
+      <div>
+      <p> ${this.model.asked[0].userAnswer}</p>
+      </div>
+      <div>
+      <p>The correct answer was</p>
+      </div>
+      <p>${this.model.asked[0].correctAnswer}</p>
+      <input type="submit" class="continue" value="Continue"/>
+    </div>
+  `;
   }
 
   _generateError() {
     return `
+    <div>
+      <p>
+        ${this.model.asked[0].text}
+      </p>
       <div>
-        <p>Must Select Answer</p>
+      <p>You must select an answer!</p>
       </div>
-    `;
+      <p class="answer-list">
+      <form class="submit-answer">
+        ${this.generateAnswer()}
+        <input type="submit" value="Submit"/>
+      </form>
+      </p>
+    </div>
+  `;
   }
 
 
@@ -100,7 +141,7 @@ class QuizDisplay extends Renderer {
     // else{
     //   html = this._generateError();
     // }
-    // console.log(html);
+    console.log(html);
     return html;
   }
 
@@ -118,8 +159,13 @@ class QuizDisplay extends Renderer {
     else {
       console.log(answer);
       this.model.submitAnswer(answer);
-      this.template();
     }
+  }
+
+  handleContinue(e){
+    e.preventDefault();
+    this.model.nextQuestion();
+    this.template();
   }
 }
 

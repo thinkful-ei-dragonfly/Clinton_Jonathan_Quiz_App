@@ -50,6 +50,7 @@ class Quiz extends Model {
 
   submitAnswer(a){
     this.asked[0].submitAnswer(a);
+    this.update();
   }
 
 
@@ -61,12 +62,14 @@ class Quiz extends Model {
   updateScoreHistory(){
     if (this.asked.length === 5) {
       this.scoreHistory.push(this.score);
+      this.update();
     }
   }
 
   endgame(){
     this.active = false;
     this.score = 0;
+    this.update();
   }
 
   updateScore(){
