@@ -116,11 +116,29 @@ class QuizDisplay extends Renderer {
   `;
   }
 
+  _generateEndgame(){
+    return `
+      <div>
+        <p>
+          Good job!
+        </p>
+        <p>
+          Your final score was ${this.model.score} out of 5.
+        </p>
+      </div>
+      <div class="buttons">
+        <button class="play-again">Play Again</button>
+      </div>
+    `;
+  }
 
   template() {
     let html = '';
 
-    if (this.model.asked.length === 0) {
+     if ((this.model.active === false) && (this.model.asked.length === 5)){
+      html = this._generateEndgame();
+    }
+    else if (this.model.asked.length === 0) {
       // Quiz has not started
       html = this._generateIntro();
     }
@@ -137,10 +155,6 @@ class QuizDisplay extends Renderer {
       // console.log(this.model.asked[0].answerStatus());
     }
 
-
-    // else{
-    //   html = this._generateError();
-    // }
     console.log(html);
     return html;
   }
@@ -159,13 +173,21 @@ class QuizDisplay extends Renderer {
     else {
       console.log(answer);
       this.model.submitAnswer(answer);
+      this.model.updateScore();
     }
   }
 
   handleContinue(e){
     e.preventDefault();
-    this.model.nextQuestion();
-    this.template();
+    if (this.model.unasked.length === 0){
+      // this.model.updateScore();
+      this.model.updateScoreHistory();
+      this.model.endgame();
+      console.log('endgame ran');
+    }
+    else {
+      this.model.nextQuestion();
+    }
   }
 }
 

@@ -68,13 +68,14 @@ class Quiz extends Model {
 
   endgame(){
     this.active = false;
-    this.score = 0;
+    // this.score = 0;
     this.update();
   }
 
   updateScore(){
     if (this.asked[0].userAnswer === this.asked[0].correctAnswer) {
       this.score ++;
+      this.update();
   } 
 }
 }
