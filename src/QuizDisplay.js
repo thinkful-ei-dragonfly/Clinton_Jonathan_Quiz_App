@@ -120,7 +120,7 @@ class QuizDisplay extends Renderer {
     return `
       <div>
         <p>
-          Good job!
+          ${this.model.message}
         </p>
         <p>
           Your final score was ${this.model.score} out of 5.
@@ -183,6 +183,7 @@ class QuizDisplay extends Renderer {
       // this.model.updateScore();
       this.model.updateScoreHistory();
       this.model.updateHighestScore(this.model.scoreHistory);
+      this.model.updateMessage();
       this.model.endgame();
       console.log('endgame ran');
     }
