@@ -7,6 +7,22 @@ class Question extends Model { //extended from model
         this.answers = [questionData.correct_answer, ...questionData.incorrect_answers];
         this.correctAnswer = questionData.correct_answer;
         this.userAnswer = null;  //added super and refactored data inputs
+        this._randomize(this.answers);
+    }
+
+    _randomize(arr){
+      let currentIndex = arr.length
+      let tempVal
+      let ranIn
+
+      while (currentIndex !== 0){
+        ranIn = Math.floor(Math.random()*currentIndex);
+        currentIndex -= 1;
+        tempVal = arr[currentIndex];
+        arr[currentIndex] = arr[ranIn];
+        arr[ranIn] = tempVal;
+      }
+      return arr;
     }
 
     submitAnswer(a){
