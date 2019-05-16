@@ -47,7 +47,9 @@ class QuizDisplay extends Renderer {
   generateAnswer() {
     let answerHtml = this.model.asked[0].answers.map(answer => {
       return `
+      <div>
       <input class ="answer" type="radio" name="answer" value="${answer}"> ${answer}
+      </div>
       `
     });
     return answerHtml.join('');
