@@ -95,25 +95,6 @@ class QuizDisplay extends Renderer {
   `;
   }
 
-  _generateError() {
-    return `
-    <div>
-      <p>
-        ${this.model.asked[0].text}
-      </p>
-      <div>
-      <p>You must select an answer!</p>
-      </div>
-      <p class="answer-list">
-      <form class="submit-answer">
-        ${this.generateAnswer()}
-        <input type="submit" value="Submit"/>
-      </form>
-      </p>
-    </div>
-  `;
-  }
-
   _generateEndgame(){
     return `
       <div>
