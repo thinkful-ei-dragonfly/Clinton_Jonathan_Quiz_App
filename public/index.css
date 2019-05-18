@@ -39,9 +39,45 @@ section.display{
 
 .start-quiz{
   background-color: #5689db;
-  border: 1px solid #5689db;
+  border: 1px solid black;
   border-radius: 3px;
   display: inline-block;
   color: #FFF;
   font-size: 15px;
+}
+
+.answer-list{
+  text-align: left;
+  margin-left: 33%;
+}
+
+.submit-answer{
+  text-align: center;
+}
+
+.submit-answer input{
+  text-align: center;
+}
+
+form div{
+  text-align: left;
+  margin-left: 33%;
+}
+
+
+input{
+  background-color: #5689db;
+  border: 1px solid black;
+  border-radius: 3px;
+  display: inline-block;
+  color: #FFF;
+  font-size: 15px;
+}
+
+.correct{
+  color: green;
+}
+
+.incorrect{
+  color:red;
 }

@@ -67,7 +67,7 @@ class QuizDisplay extends Renderer {
       <div>
       <p>The correct answer was</p>
       </div>
-      <p>${this.model.asked[0].correctAnswer}</p>
+      <p class="correct">${this.model.asked[0].correctAnswer}</p>
       <input type="submit" class="continue" value="Continue"/>
     </div>
   `;
@@ -86,12 +86,12 @@ class QuizDisplay extends Renderer {
       <p>You answered:</p>
       </div>
       <div>
-      <p> ${this.model.asked[0].userAnswer}</p>
+      <p class="incorrect"> ${this.model.asked[0].userAnswer}</p>
       </div>
       <div>
       <p>The correct answer was</p>
       </div>
-      <p>${this.model.asked[0].correctAnswer}</p>
+      <p class="correct">${this.model.asked[0].correctAnswer}</p>
       <input type="submit" class="continue" value="Continue"/>
     </div>
   `;
