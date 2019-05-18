@@ -21,16 +21,19 @@ section.display{
 .status-score{
   display: inline;
   text-align: left;
+  width: 33%;
 }
 
 .status-highest-score{
   display: inline;
+  width: 33%;
   text-align: center;
 
 }
 
 .status-progress{
   display: inline;
+  width: 33%;
   text-align: right;
 }
 
