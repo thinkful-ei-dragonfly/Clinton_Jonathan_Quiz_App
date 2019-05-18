@@ -156,7 +156,7 @@ class QuizDisplay extends Renderer {
 
   handleContinue(e){
     e.preventDefault();
-    if (this.model.unasked.length === 0){
+    if (this.model.asked.length === 5){
       this.model.updateScoreHistory();
       this.model.newHighScore();
       this.model.updateHighestScore(this.model.scoreHistory);
