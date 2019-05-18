@@ -40,10 +40,10 @@ section.display{
 .start-quiz{
   background-color: #5689db;
   border: 1px solid black;
-  border-radius: 3px;
   display: inline-block;
   color: #FFF;
   font-size: 15px;
+  padding: 5px 15px;
 }
 
 .answer-list{
@@ -68,10 +68,11 @@ form div{
 input{
   background-color: #5689db;
   border: 1px solid black;
-  border-radius: 3px;
   display: inline-block;
   color: #FFF;
   font-size: 15px;
+  margin-top: 15px;
+  padding: 5px 10px;
 }
 
 .correct{
